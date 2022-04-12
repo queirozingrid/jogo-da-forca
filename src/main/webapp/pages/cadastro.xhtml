@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	  xmlns:h="http://xmlns.jcp.org/jsf/html"
+	  xmlns:f="http://xmlns.jcp.org/jsf/core">
+	  
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<link href="../resources/styles/cadastro.css" rel="stylesheet" />
+
+<script src="jquery-3.6.0.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.0/jquery.mask.js"></script>
+
+
+
+<title>Cadastro</title>
+</head>
+
+<body>
+	<center>
+		<h:messages/>
+		<div class="topo">
+			<h1>CADASTRO</h1>
+		</div>
+		
+			<h:form id="formulario">
+				<!-- DADOS PESSOAIS -->
+				<div class="container">
+					<div class="campos-pessoais">
+						<div class="mb-3">
+						  <h:outputLabel for="nome" class="form-label">Nome</h:outputLabel>
+						  <h:inputText type="text" class="form-control" value="#{usuarioBean.usuario.nome}"
+						  		 id="nome" placeholder="Digite seu nome aqui"
+						  		 required="true" requiredMessage="O nome é obrigatório!"/>
+						  
+						</div>
+							
+						<div class="mb-3">
+						  <h:outputLabel for="cpf" class="form-label">CPF</h:outputLabel>
+						  <h:inputText class="form-control" id="cpf"
+						  		 value="#{usuarioBean.usuario.cpf}"
+						  		 onkeypress="$(this).mask('999.999.999-99');"
+						  		 required="true" requiredMessage="O CPF é obrigatório!"/>
+						</div>
+							
+						<div class="mb-3">
+						  <h:outputLabel for="celular" class="form-label">Celular</h:outputLabel>
+						  <h:inputText class="form-control" id="celular"
+						  			   value="#{usuarioBean.usuario.celular}"
+						  			   onkeypress="$(this).mask('(99) 9 9999 9999');"
+						  			   required="true" requiredMessage="O celular é obrigatório!"/>
+						</div>
+						
+			
+						<div class="mb-3">
+							<h:outputLabel class="form-label" for="endereco">CEP</h:outputLabel>
+							<h:inputText class="form-control" id="endereco" value="#{usuarioBean.cep}"
+										 onkeypress="$(this).mask('99999-999');"
+										 required="true" requiredMessage="O CEP é obrigatório!"/>
+						</div>
+						
+						
+						<div class="mb-3">
+						  <h:outputLabel for="email" class="form-label">Email</h:outputLabel>
+						  <h:inputText class="form-control" id="email" type="email"
+						  			   value="#{usuarioBean.usuario.email}"
+						  			   required="true" requiredMessage="O email é obrigatório!"/>
+						</div>
+						
+						<div class="mb-3">
+						  <h:outputLabel for="senha" class="form-label">Senha</h:outputLabel>
+						  <h:inputSecret class="form-control" id="senha" value="#{usuarioBean.senha}"
+						  				required="true" requiredMessage="A senha é obrigatória!"/>
+						</div>
+						
+						<div class="mb-3">
+						  <h:outputLabel for="senhaconfirm" class="form-label">Confirmação da senha</h:outputLabel>
+						  <h:inputSecret class="form-control" id="senhaconfirm" value="#{usuarioBean.confirmaSenha}"
+						  				 required="true" requiredMessage="A confirmação da senha é obrigatória!"/>
+						</div>
+					</div>
+					<!-- FIM DOS DADOS PESSOAIS -->
+					
+					<!-- DADOS BANCÁRIOS -->
+					<div class="campos-bancarios">
+						<div class="mb-3">
+							<h:outputLabel for="nomeCartao" class="form-label">Nome como está no cartão</h:outputLabel>
+							<h:inputText class="form-control" id="nomeCartao" value="#{usuarioBean.usuario.cartao.nomeUsuario}"
+										 required="true" requiredMessage="O nome é obrigatório!"/>
+						</div>
+						
+						<div class="mb-3">
+							<h:outputLabel for="numeroCartao" class="form-label">Número do cartão</h:outputLabel>
+							<h:inputText class="form-control" id="numeroCartao"
+										 value="#{usuarioBean.usuario.cartao.numero}"
+										 onkeypress="$(this).mask('9999 9999 9999 9999');"
+											 required="true" requiredMessage="O número do cartão é obrigatório!"
+										 />
+						</div>
+						
+						<div class="mb-3">
+							<h:outputLabel for="digitoV" class="form-label">Dígito verificador</h:outputLabel>
+							<h:inputText class="form-control" id="digitoV"
+										 value="#{usuarioBean.usuario.cartao.codigoVerificacao}"
+										 onkeypress="$(this).mask('999');"
+											 required="true" requiredMessage="O dígito verificador é obrigatório!"
+										 />
+						</div>
+						
+						<div class="mb-3">
+							<h:outputLabel for="dataValidade" class="form-label">Validade do cartão</h:outputLabel>
+							<h:inputText class="form-control" id="dataValidade" 
+										 value="#{usuarioBean.usuario.cartao.validade}"
+										 onkeypress="$(this).mask('99/99');"
+											 required="true" requiredMessage="O data de validade é obrigatória!"
+										 />
+							<h:message for="dataValidade"/>
+						</div>
+					</div>
+		
+					<div class="mb-2">
+						<h:commandButton type="submit" value="CADASTRAR" action="#{usuarioBean.validaUsuario}"/>
+					</div>							
+				</div>
+						
+			</h:form>
+	</center>
+	
+
+</body>
+</html>
